@@ -11,6 +11,25 @@ namespace SchoolPractice
         public string courseName;
 
 
-        
+        public override string ToString()
+        {
+            return "Course: " + courseName + ", Teacher: " + teacher;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == this)
+            {
+                return true;
+            }
+
+            if (obj == null || obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            Course course = obj as Course;
+            return (course.teacher == teacher && course.courseName == courseName);
+        }
     }
 }

@@ -27,5 +27,52 @@ namespace SchoolPractice
         {
             nextStudentId++;
         }
+
+        public string GetGradeLevel(int credits)
+        {
+            if (credits <= 29)
+            {
+                return "Freshman";
+            } 
+            else if (credits <= 59)
+            {
+                return "Sophomore";
+            } 
+            else if (credits <= 89)
+            {
+                return "Junior";
+            }
+            else { return "Senior"; }
+        }
+
+        public void AddGrade (int credits, double grade)
+        {
+            double qualityScore = Gpa * NumberOfCredits;
+            qualityScore += grade * credits;
+            NumberOfCredits += credits;
+            Gpa = qualityScore / NumberOfCredits;
+
+        }
+
+        public override string ToString()
+        {
+            return Name + " (Credits: " + NumberOfCredits + " , GPA: " + Gpa + ")";
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == this)
+            {
+                return true;
+            }
+
+            if (obj == null || obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            Student student = obj as Student;
+            return student.StudentId == StudentId;
+        }
     }
 }
